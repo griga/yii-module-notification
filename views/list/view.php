@@ -14,7 +14,7 @@ $this->breadcrumbs = [
         <h3><?= $model->getTypeName(); ?></h3>
         <div class="well">
             <h4><?= $model->subject ?></h4>
-            <p><?= $model->subject ?></p>
+            <p><?= $model->message ?></p>
             <hr/>
             <?= app()->format->timeago($model->create_time) ?>
             <hr/>
