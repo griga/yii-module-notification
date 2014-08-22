@@ -136,4 +136,20 @@ class Notification extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    /**
+     * return behaviors of component merged with parent component behaviors
+     * @return array CBehavior[]
+     */
+
+    public function behaviors(){
+    	return CMap::mergeArray(
+    		parent::behaviors(),
+    		array(
+                'CTimestampBehavior' => [
+                    'class' => 'zii.behaviors.CTimestampBehavior',
+                    'setUpdateOnCreate'=>true,
+                ],
+    	));
+    }
 }

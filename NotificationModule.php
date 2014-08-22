@@ -2,6 +2,7 @@
 
 class NotificationModule extends CWebModule
 {
+    public $defaultController = 'api';
 	public function init()
 	{
 		// this method is called when the module is being created
