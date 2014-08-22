@@ -152,4 +152,20 @@ class Notification extends CActiveRecord
                 ],
     	));
     }
+
+    private static $_unreadCache;
+
+
+    /**
+     * @return Notification[]
+     */
+    public static function unread(){
+        if(!isset(self::$_unreadCache))
+            self::$_unreadCache = Notification::model()->findAllByAttributes([
+                'status'=>Notification::STATUS_NEW
+            ]);
+        return self::$_unreadCache;
+
+
+    }
 }
