@@ -16,4 +16,23 @@ class ListController extends BackendController {
         ]);
     }
 
+    /**
+     *
+     */
+    public function actionView($id)
+    {
+        $model = Notification::model()->findByPk($id);
+        Notification::model()->updateByPk($id,[
+            'status'=>Notification::STATUS_PROCESSED
+        ]);
+        $data = [
+            'model'=>$model
+        ];
+        if (r()->isAjaxRequest || isset($_GET['ajax'])) {
+            $this->renderPartial('view', $data, false, true);
+        } else {
+            $this->render('view', $data);
+        }
+    }
+
 } 
