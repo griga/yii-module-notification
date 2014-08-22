@@ -26,7 +26,7 @@ class NotificationDispatcher extends CComponent
         $model->save();
 
         self::sendNotifications(
-            explode(',', Config::get('contact_notify_emails')),
+            self::getNotifyEmails('contact_notify_emails'),
             $model
         );
     }
@@ -41,6 +41,10 @@ class NotificationDispatcher extends CComponent
         foreach ($emails as $email) {
             MailService::sendMessage($notification->subject, $notification->message, $email);
         }
+    }
+
+    public static function getNotifyEmails($key){
+        return explode(',',preg_replace('~\s+~', '', Config::get($key)));
     }
 
 } 
